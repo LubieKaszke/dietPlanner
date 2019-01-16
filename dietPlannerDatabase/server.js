@@ -23,3 +23,16 @@ app.get('/meals', function(req, res) {
     res.send( JSON.parse( data ) );
   });
 });
+
+app.post('/meals/add', function(req, res) {
+  fs.readFile( __dirname + "/" + "meals.json", 'utf8', function (err, data) {
+    let meal = JSON.parse( data );
+    newMeal = {"id": (data[data.length-1].id)+1, "name" : req.body.mealName,"products" : req.body.products}
+    data.push(newMeal);
+    fs.writeFile( __dirname + "/" + "meals.json", JSON.stringify(data), function(err) {
+      if(err) throw err;
+      console.log('Data updated');
+    });
+    res.send(newProduct);
+  });
+})
