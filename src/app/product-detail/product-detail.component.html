@@ -1,0 +1,10 @@
+<div *ngIf="product">
+  <h2>{{product.name | uppercase}}</h2>
+  <h4> Quantity : {{product.quantity}} g</h4>
+  <label>Nutrition Fact</label>
+  <ul>
+    <li> Energy: {{product.nutritions.energy}} kcal</li>
+    <li> Protein : {{product.nutritions.protein}} g</li>
+    <li> Carbs : {{product.nutritions.carbs}} g</li>
+  </ul>
+</div>
