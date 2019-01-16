@@ -1,0 +1,16 @@
+<h2>{{product.name | uppercase}}</h2>
+<h4> Quantity : {{product.quantity}} g</h4>
+<label>Nutrition Fact</label>
+<ul>
+  <li> Energy: {{product.nutritions.energy}} kcal</li>
+  <li> Protein : {{product.nutritions.protein}} g</li>
+  <li> Carbs : {{product.nutritions.carbs}} g</li>
+</ul>
+<div>
+  <label > Edit quantity:
+    <input [(ngModel)] ="product.quantity" placeholder="100g">
+  </label>
+</div>
+<div>
+  <p>Energy of {{product.quantity}} : {{product.nutritions.energy/(100/product.quantity)}}</p>
+</div>
