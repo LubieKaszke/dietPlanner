@@ -6,17 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import {HttpClientModule} from '@angular/common/http';
+import { ProductDetailComponent } from './product-detail/product-detail.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    HomepageComponent
+    HomepageComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

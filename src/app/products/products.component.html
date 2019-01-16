@@ -1,4 +1,4 @@
-<h2>{{product.name | uppercase}}</h2>
+<!-- <h2>{{product.name | uppercase}}</h2>
 <h4> Quantity : {{product.quantity}} g</h4>
 <label>Nutrition Fact</label>
 <ul>
@@ -13,4 +13,14 @@
 </div>
 <div>
   <p>Energy of {{product.quantity}} : {{product.nutritions.energy/(100/product.quantity)}}</p>
-</div>
+</div> -->
+
+<ul class="products">
+  <li *ngFor="let product of products"
+    [class.selected] = "product === selectedProduct"
+    (click)="onSelect(product)">
+    <span class="badge">{{product.name}}</span>
+  </li>
+</ul>
+
+<app-product-detail [product]="selectedProduct"></app-product-detail>
