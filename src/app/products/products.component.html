@@ -1,26 +1,17 @@
-<!-- <h2>{{product.name | uppercase}}</h2>
-<h4> Quantity : {{product.quantity}} g</h4>
-<label>Nutrition Fact</label>
-<ul>
-  <li> Energy: {{product.nutritions.energy}} kcal</li>
-  <li> Protein : {{product.nutritions.protein}} g</li>
-  <li> Carbs : {{product.nutritions.carbs}} g</li>
-</ul>
-<div>
-  <label > Edit quantity:
-    <input [(ngModel)] ="product.quantity" placeholder="100g">
-  </label>
-</div>
-<div>
-  <p>Energy of {{product.quantity}} : {{product.nutritions.energy/(100/product.quantity)}}</p>
-</div> -->
+<div class="list-filter">
+    <app-product-filter
+      [availableFilters]="filters"
+      [activatedFilters]="activeFilters"
+      (activeFilters)="updateActivatedFilters($event)"
+    ></app-product-filter>
+  </div>
 
 <ul class="products">
-  <li *ngFor="let product of products"
-    [class.selected] = "product === selectedProduct"
-    (click)="onSelect(product)">
+  <li *ngFor="let product of productsAfterFilter()">
+    <a routerLink ="/{{product.id}}">
     <span class="badge">{{product.name}}</span>
+    </a>
   </li>
 </ul>
 
-<app-product-detail [product]="selectedProduct"></app-product-detail>
+<!-- <app-product-detail [product]="selectedProduct"></app-product-detail> -->

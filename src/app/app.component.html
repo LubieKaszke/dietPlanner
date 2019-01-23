@@ -2,8 +2,15 @@
 <div style="text-align:center">
   <h1>
     {{ title }}!
-    <app-products></app-products>
+    <nav>
+      <a routerLink="/products">Product Base</a>
+      <a routerLink="/mealplan">Mealplan</a>
+      <a routerLink="/calculator">BMR Calculator</a>
+      <a routerLink="/edit/0">Add</a>
+    </nav>
+    <router-outlet></router-outlet>
+    
   </h1>
 </div>
 
-<router-outlet></router-outlet>
+

@@ -1,28 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import {Product} from '../product'
+import {ChangeDetectionStrategy, Component, OnInit, Input } from '@angular/core';
+import {Product, ProductFilter} from '../product'
 import {ProductsService} from '../products.service';
+import { isNgTemplate } from '@angular/compiler';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent implements OnInit {
-  products: Product[];
+  public products: Product[];
   selectedProduct: Product;
-  product: {
-    id:4,
-    name:"Rice",
-    quantity:100,
-    nutritions:{
-      energy:1234,
-      protein:13,
-      carbs:123,
-      fat:12
-    }
-  }
+  isLoadingResults = true;
+
+  public readonly filters: ProductFilter[] =[
+    <ProductFilter>{type: 'dairy'},
+    <ProductFilter>{type: 'meat'},
+    <ProductFilter>{type: 'vegetables'}
+  ]
+  public activeFilters: ProductFilter[] = [];
+
   constructor(private productsService: ProductsService) { }
+
   getProducts(): void{
-    this.productsService.getProducts().subscribe(products => this.products =products)
+    this.productsService.getProducts().subscribe(res => 
+      {this.products = res;
+      console.log(this.products);
+    this.isLoadingResults =false;},
+    err => {
+      console.log(err);
+      this.isLoadingResults = false;
+    });
   }
 
   ngOnInit() {
@@ -31,5 +39,22 @@ export class ProductsComponent implements OnInit {
 
   onSelect(product: Product): void {
     this.selectedProduct = product;
+  }
+
+  public productsAfterFilter(): Product[]{
+    return this.products.filter((product:Product) =>{
+      const matchesActiveFilter: boolean = this.activeFilters.reduce((prev,curr)=>{
+        if(product.type.includes(curr.type)){
+          return prev && true;
+        }else{
+          return false;
+        }
+      }, true);
+      return matchesActiveFilter;
+    });
+  }
+
+  public updateActivatedFilters(filters: ProductFilter[]){
+    this.activeFilters = filters;
   }
 }

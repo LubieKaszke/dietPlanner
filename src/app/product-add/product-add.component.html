@@ -1,0 +1,16 @@
+<form [formGroup]="productForm" (ngSubmit)=" onFormSubmit()">
+  <input placeholder="name" formControlName="name">
+  <span *ngIf="!productForm.get('name').valid && productForm.get('name').touched">Please enter Product Name</span>
+  <input placeholder="type" formControlName="type">
+  <span *ngIf="!productForm.get('type').valid && productForm.get('type').touched">Please enter type</span>
+  <input placeholder="energy" formControlName="energy">
+  <span *ngIf="!productForm.get('energy').valid && productForm.get('energy').touched">Please enter Product Name</span>
+  <input placeholder="protein" formControlName="protein">
+  <span *ngIf="!productForm.get('protein').valid && productForm.get('protein').touched">Please enter Product Name</span>
+  <input placeholder="fat" formControlName="fat">
+  <span *ngIf="!productForm.get('fat').valid && productForm.get('fat').touched">Please enter Product Name</span>
+  <input placeholder="carbs" formControlName="carbs">
+  <span *ngIf="!productForm.get('carbs').valid && productForm.get('carbs').touched">Please enter Product Name</span>
+  <button type="submit" [disabled]="!productForm.valid">Add</button>
+</form>
+

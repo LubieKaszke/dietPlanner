@@ -1,5 +1,6 @@
 <div *ngIf="product">
   <h2>{{product.name | uppercase}}</h2>
+  <h2>{{product.type}}</h2>
   <h4> Quantity : {{product.quantity}} g</h4>
   <label>Nutrition Fact</label>
   <ul>
@@ -7,4 +8,12 @@
     <li> Protein : {{product.nutritions.protein}} g</li>
     <li> Carbs : {{product.nutritions.carbs}} g</li>
   </ul>
+  <button class="add-to-cart" (click)="addToMeal(product)">
+      Add to meal
+    </button>
+    <button  (click)="deleteProduct(product.id)">
+     Remove
+    </button>
+    <button (click)="goBack()">go back</button>
+    <button (click)="edit()">Edit</button>
 </div>

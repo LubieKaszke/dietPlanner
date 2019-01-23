@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>BMR Calculator</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+      <input  [(ngModel)]="user.name" formControlName="uname">
+      <div *ngIf="userForm.get('uname').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> 
+       Name required. 
+      </div>
+      <input formControlName="height">
+      <div *ngIf="userForm.get('height').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> 
+       Height required. 
+      </div>
+      <input formControlName="weight">
+      <div *ngIf="userForm.get('weight').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> 
+       Weight required. 
+      </div>
+      <input formControlName="age">
+      <div *ngIf="userForm.get('age').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> 
+      Age required. 
+      </div>
+      <input type="radio" value="male" formControlName="gender"> Male
+      <input type="radio" value="female" formControlName="gender"> Female
+      <div *ngIf="userForm.get('gender').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> 
+      Gender required. 
+      </div>		 
+      <div class="form-group">
+          <label for="activity">Activity</label>
+          <select formControlName ="activity" required>
+            <option *ngFor="let act of activity" [value]="act">{{act}}</option>
+           </select>
+           <div *ngIf="userForm.get('activity').invalid && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'"> </div>
+        </div>
+        <button>Submit</button>
+  </form>
+  <p *ngIf="isValidFormSubmitted && userForm.pristine" [ngClass] = "'success'">
+      Form submitted successfully.
+  </p>
+</div>
